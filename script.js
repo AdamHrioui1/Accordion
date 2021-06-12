@@ -1,18 +1,20 @@
-const accodion_header = document.querySelectorAll(".accodion_header");
-const accordion_content = document.querySelectorAll(".content");
+const accordion_header = document.querySelectorAll(".accordion_header");
+const accordion_content = document.querySelectorAll(".accordion_content");
 
-accodion_header.forEach(accordion => {
-    accordion.addEventListener("click", (e) => {
-
-        accordion_content.forEach( content => {
+accordion_header.forEach(header => {
+    header.addEventListener("click", (e) => {
+        
+        accordion_content.forEach(content => {
             if(content.classList.contains("active") && e.target.nextElementSibling !== content){
-                content.classList.remove("active"); 
+                content.classList.remove("active");
+                accordion_header.forEach(header => {
+                    header.classList.remove("active");
+                })
             }
-            console.log(e.target.nextElementSibling, e.target.nextElementSibling !== content);
         });
-        console.log(" ");
 
-        const content = accordion.nextElementSibling;
+        header.classList.toggle("active");
+        let content = header.nextElementSibling;
         content.classList.toggle("active");
     })
-});
+})
